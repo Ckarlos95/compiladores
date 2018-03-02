@@ -1,0 +1,223 @@
+ruby:
+  navbar_items = [
+    'Autómatas',
+    'Gramáticas',
+  ]
+
+  menu_items = [
+    'Concatenar AFNs',
+    'Unir AFNs',
+    'Cerradura Epsilon (.*)',
+    'Cerradura Positiva (.+)',
+    'Operación (.?)',
+    'Validar cadena',
+  ]
+
+doctype html
+html
+  head
+    meta charset="utf-8"
+    meta content="IE=edge" http-equiv="X-UA-Compatible"
+    meta content="width=device-width, initial-scale=1" name="viewport"
+    title Compiladores - 3CM7
+    link href="bulma.css" rel="stylesheet"
+    link href="main.css" rel="stylesheet"
+    / link href="sortable.css" rel="stylesheet"
+  body
+    /! START NAV
+    nav.navbar.is-primary
+      .container
+        .navbar-brand
+          a.navbar-item.brand-text
+            | Compiladores 3CM7
+
+        .navbar-menu
+          .navbar-start
+            - navbar_items.each do |item|
+              a.navbar-item #{item}
+    /! END NAV
+    .container
+      .columns
+        .column.is-3
+          .aside.menu
+            p.menu-label
+              | Menú
+            ul.menu-list
+              li
+                a.m-item.is-active.m-crear Crear AFN básico
+                a.m-item.m-unir Unir AFN's
+                a.m-item.m-concatenar Concatenar AFN's
+                a.m-item.m-asterisco Operación Cerradura de Kleen
+                a.m-item.m-positiva Operación Cerradura Positiva
+                a.m-item.m-interrogacion Operación Condicional
+                a.m-item.m-validar Validar Cadena
+        .column.is-9
+          .columns
+            .column.is-7
+              br
+              .sections
+                .crear.operacion
+                  .hero.is-info.welcome.is-small
+                    .hero-body
+                      .container
+                        h1.title Crear AFN básico
+                  br
+                  .crear-AFN
+                    .field.tipo-afn
+                      .control
+                        .columns
+                          .column
+                            label.label
+                              input.char type="radio" name="crear" checked="true"
+                              |  Con transción con un solo carácter
+                          .column
+                            label.label
+                              input.rango type="radio" name="crear"
+                              |  Con transción con un rango de caracteres
+                    .columns.simbolos
+                      .column
+                        .field.f-min-simbolo.has-addons
+                          .control
+                            input.input.min-simbolo type="text" name="crear" maxlength="1" placeholder="Intoduce un carácter"
+                          .control.min-simbolo-add
+                            a.button.is-primary.btn-crear Agregar
+
+                .hidden.unir.operacion
+                  .hero.is-info.welcome.is-small
+                    .hero-body
+                      .container
+                        h1.title Unir AFN's
+                  br
+                  ol.panel.unir.apila.draggable-both
+                    p.panel-heading Arrastra AFN's para unirlos
+                  .field
+                    .control
+                      a.button.is-primary.btn-unir UNIR!
+                  br
+                  .hero.is-success.welcome.is-small
+                    .hero-body
+                      .container
+                        h1.title Resultado
+                  ol.panel.unir.resultado.draggable-both
+
+                .hidden.concatenar.operacion
+                  .hero.is-info.welcome.is-small
+                    .hero-body
+                      .container
+                        h1.title Concatenar AFN's
+                  br
+                  ol.panel.concatenar.apila.draggable-both
+                    p.panel-heading
+                      | Arrastra AFN's para concatenarlos
+                      br
+                      span.is-size-6.has-text-danger
+                        |  (se concatenarán de forma descendente)
+                  .field
+                    .control
+                      a.button.is-primary.btn-concatenar CONCATENAR!
+                  br
+                  .hero.is-success.welcome.is-small
+                    .hero-body
+                      .container
+                        h1.title Resultado
+                  ol.panel.concatenar.resultado.draggable-both
+
+                .hidden.asterisco.operacion
+                  .hero.is-info.welcome.is-small
+                    .hero-body
+                      .container
+                        h1.title Operación Cerradura de Kleen
+                  br
+                  ol.panel.asterisco.apila.draggable-both
+                    p.panel-heading Arrastra AFN's para aplicar la cerradura de Kleen (*) a cada uno
+                  .field
+                    .control
+                      a.button.is-primary.btn-asterisco *
+                  br
+                  .hero.is-success.welcome.is-small
+                    .hero-body
+                      .container
+                        h1.title Resultado
+                  ol.panel.asterisco.resultado.draggable-both
+
+                .hidden.positiva.operacion
+                  .hero.is-info.welcome.is-small
+                    .hero-body
+                      .container
+                        h1.title Operación Cerradura Positiva
+                  br
+                  ol.panel.positiva.apila.draggable-both
+                    p.panel-heading Arrastra AFN's para aplicar la cerradura positiva (+) a cada uno
+                  .field
+                    .control
+                      a.button.is-primary.btn-positiva +
+                  br
+                  .hero.is-success.welcome.is-small
+                    .hero-body
+                      .container
+                        h1.title Resultado
+                  ol.panel.positiva.resultado.draggable-both
+
+                .hidden.interrogacion.operacion
+                  .hero.is-info.welcome.is-small
+                    .hero-body
+                      .container
+                        h1.title Operación Condicional
+                  br
+                  ol.panel.interrogacion.apila.draggable-both
+                    p.panel-heading Arrastra AFN's para aplicar la cerradura condicional (?) a cada uno
+                  .field
+                    .control
+                      a.button.is-primary.btn-interrogacion ?
+                  br
+                  .hero.is-success.welcome.is-small
+                    .hero-body
+                      .container
+                        h1.title Resultado
+                  ol.panel.interrogacion.resultado.draggable-both
+
+                .hidden.validar.operacion
+                  .hero.is-info.welcome.is-small
+                    .hero-body
+                      .container
+                        h1.title Validar Cadena
+                  br
+                  ol.panel.validar.apila.draggable-both
+                    p.panel-heading
+                      | Arrastra AFN's para validar una cadena
+                      br
+                      span.is-size-6.has-text-info
+                        |  (la cadena se validará para cada autómata)
+                  .field.has-addons
+                    .control
+                      input.input.cadena-validar type="text" placeholder="Intoduce una cadena"
+                    .control
+                      a.button.is-primary.btn-validar VALIDAR!
+                  br
+                  .hero.is-success.welcome.is-small
+                    .hero-body
+                      .container
+                        h1.title Resultado
+                  ol.panel.validar.resultado
+
+            .column.is-5.af-stack
+              br
+              .hero.is-primary.welcome.is-small
+                .hero-body
+                  .container
+                    h1.title Tus Autómatas
+              ol.panel.automatas.draggable-both
+                br
+    br : br : br
+    footer.footer : container : content
+      p.is-size-5 Integrantes
+      ul
+        li Aguilera Palacios Juan Carlos
+        li Añorve Pons German Silvestre
+        li Morales Gonzalez Diego Arturo
+        li Paredes Hernandez Pedro Antonio
+
+    script src="jquery-min.js"
+    script src="jquery-sortable.js"
+    script src="AFN_JS/automata.js"
+    script src="operaciones.js"
